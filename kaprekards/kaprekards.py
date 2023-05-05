@@ -1,3 +1,16 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# Copyright (c) 2023, Pending. Some rights reserved.
+# Jesse B.
+# Mr. 5 x 5 Productions presents
+# Kaprekards
+# Application: Kaprekards App.
+# Description: Card sorting game based on Kaprekar's constant.
+# Testing Validation: .
+# Development Environment: VS Code
+# Version: Python 3.9.15 / 3.11.3
+# Solution File: tinker_week14_v23.py
+# Date: 04/29/23
 
 import random
 
