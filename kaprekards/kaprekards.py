@@ -12,12 +12,13 @@
 # Solution File: tinker_week14_v23.py
 # Date: 04/29/23
 
+
 import random
 
 def arrange_cards(cards):
     # arrange cards to form the largest and smallest numbers possible
-    largest_num = int(''.join(sorted(cards, reverse=True)))
-    smallest_num = int(''.join(sorted(cards)))
+    largest_num = int(''.join([str(x) for x in sorted(cards, reverse=True)]))
+    smallest_num = int(''.join([str(x) for x in sorted(cards)]))
     return largest_num, smallest_num
 
 def play_game(num_players, max_iterations):
@@ -61,7 +62,6 @@ def play_game(num_players, max_iterations):
     print("Final scores:")
     for player, score in scores.items():
         print(f"{player}: {score}")
-
 
 if __name__ == '__main__':
     play_game(num_players=2, max_iterations=10)
