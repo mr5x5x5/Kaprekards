@@ -43,21 +43,27 @@ def play_game(num_players, max_games):
 
             # print column headers (only once per player's turn)
             if player == players[0]:
-                print("Hand".ljust(16), "Largest".ljust(16), "Smallest".ljust(16), "Difference".ljust(16))
+                print("Hand".ljust(16), "Descending".ljust(16), "Ascending".ljust(16), "Difference".ljust(16))
                 print("-" * 64)
 
             # iterate until the score reaches 6174
             num_iterations = 0
+            previous_hand = None
             while score != 6174:
-                # print current iteration's results
-                print(str(cards).ljust(16), str(largest_num).ljust(16), str(smallest_num).ljust(16), str(score).ljust(16))
+                current_hand = str(cards).ljust(16) if previous_hand is None else " " * 16
+                descending = str(largest_num).ljust(16)
+                ascending = str(smallest_num).ljust(16)
+                difference = str(score).ljust(16)
+                print(f"{current_hand}{descending}{ascending}{difference}")
 
                 largest_num, smallest_num = arrange_cards(str(score).zfill(4))
                 score = largest_num - smallest_num
                 num_iterations += 1
 
+                previous_hand = cards
+
             # print final result's column
-            print(str(cards).ljust(16), str(largest_num).ljust(16), str(smallest_num).ljust(16), str(score).ljust(16))
+            print(f"{str(cards).ljust(16)}{str(largest_num).ljust(16)}{str(smallest_num).ljust(16)}{str(score).ljust(16)}")
             print()
 
             scores[player] += num_iterations
