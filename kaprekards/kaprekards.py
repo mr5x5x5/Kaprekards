@@ -12,7 +12,6 @@
 # Solution File: tinker_week14_v23.py
 # Date: 04/29/23
 
-
 import random
 
 def arrange_cards(cards):
@@ -55,6 +54,10 @@ def play_game(num_players, max_iterations):
                 largest_num, smallest_num = arrange_cards(str(score).zfill(4))
                 score = largest_num - smallest_num
                 num_iterations += 1
+
+                # check if result is equal to (6, 1, 7, 4)
+                if tuple(map(int, str(score).zfill(4))) == (6, 1, 7, 4):
+                    break
 
             # print final result's column
             print(str(cards).ljust(16), str(largest_num).ljust(16), str(smallest_num).ljust(16), str(score).ljust(16))
