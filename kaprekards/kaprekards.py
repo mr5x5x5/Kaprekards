@@ -41,11 +41,20 @@ def play_game(num_players, max_iterations):
             # arrange cards and compute the score
             largest_num, smallest_num = arrange_cards(cards)
             score = largest_num - smallest_num
-            scores[player] = score
+
+            # iterate until score is 6174 or the maximum iterations is reached
+            num_iterations = 0
+            while score != 6174 and num_iterations < max_iterations:
+                largest_num, smallest_num = arrange_cards(str(score).zfill(4))
+                score = largest_num - smallest_num
+                num_iterations += 1
+
+            scores[player] = num_iterations
 
             print(f"Largest number: {largest_num}")
             print(f"Smallest number: {smallest_num}")
-            print(f"Score: {score}\n")
+            print(f"Score: {score}")
+            print(f"Iterations: {num_iterations}\n")
 
             # check if the player wins
             if score == 6174:
