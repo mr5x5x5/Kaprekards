@@ -41,9 +41,10 @@ def play_game(num_players, max_games):
             largest_num, smallest_num = arrange_cards(cards)
             score = largest_num - smallest_num
 
-            # print column headers
-            print("Arrangement".ljust(16), "Largest".ljust(16), "Smallest".ljust(16), "Difference".ljust(16))
-            print("-" * 64)
+            # print column headers (only once per player's turn)
+            if player == players[0]:
+                print("Hand".ljust(16), "Largest".ljust(16), "Smallest".ljust(16), "Difference".ljust(16))
+                print("-" * 64)
 
             # iterate until the score reaches 6174
             num_iterations = 0
