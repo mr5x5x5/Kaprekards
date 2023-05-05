@@ -46,9 +46,9 @@ def play_game(num_players, max_iterations):
             print("Arrangement".ljust(16), "Largest".ljust(16), "Smallest".ljust(16), "Difference".ljust(16))
             print("-" * 64)
 
-            # iterate until the maximum iterations is reached or the score is 6174
+            # iterate until the maximum iterations is reached
             num_iterations = 0
-            while num_iterations < max_iterations and score != 6174:
+            while num_iterations < max_iterations:
                 # print current iteration's results
                 print(str(cards).ljust(16), str(largest_num).ljust(16), str(smallest_num).ljust(16), str(score).ljust(16))
 
