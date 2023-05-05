@@ -20,17 +20,17 @@ def arrange_cards(cards):
     smallest_num = int(''.join([str(x) for x in sorted(cards)]))
     return largest_num, smallest_num
 
-def play_game(num_players, max_iterations):
+def play_game(num_players, max_games):
     # initialize the game
     players = [f"Player {i+1}" for i in range(num_players)]
-    current_iteration = 0
+    current_game = 0
     winner = None
     max_iterations_played = 0
     scores = {player: 0 for player in players}
 
-    # loop until the maximum iterations is reached
-    while current_iteration < max_iterations:
-        print(f"Iteration {current_iteration+1}:")
+    # loop until the maximum number of games is reached
+    while current_game < max_games:
+        print(f"Game {current_game+1}:")
         # each player plays one round
         for player in players:
             print(f"{player}'s turn:")
@@ -45,9 +45,9 @@ def play_game(num_players, max_iterations):
             print("Arrangement".ljust(16), "Largest".ljust(16), "Smallest".ljust(16), "Difference".ljust(16))
             print("-" * 64)
 
-            # iterate until the maximum iterations is reached
+            # iterate until the score reaches 6174
             num_iterations = 0
-            while num_iterations < max_iterations:
+            while score != 6174:
                 # print current iteration's results
                 print(str(cards).ljust(16), str(largest_num).ljust(16), str(smallest_num).ljust(16), str(score).ljust(16))
 
@@ -55,17 +55,13 @@ def play_game(num_players, max_iterations):
                 score = largest_num - smallest_num
                 num_iterations += 1
 
-                # check if result is equal to (6, 1, 7, 4)
-                if tuple(map(int, str(score).zfill(4))) == (6, 1, 7, 4):
-                    break
-
             # print final result's column
             print(str(cards).ljust(16), str(largest_num).ljust(16), str(smallest_num).ljust(16), str(score).ljust(16))
             print()
 
             scores[player] += num_iterations
 
-        current_iteration += 1
+        current_game += 1
 
     # determine the winner
     for player, score in scores.items():
@@ -81,4 +77,4 @@ def play_game(num_players, max_iterations):
 
 
 if __name__ == '__main__':
-    play_game(num_players=2, max_iterations=7)
+    play_game(num_players=2, max_games=3)
