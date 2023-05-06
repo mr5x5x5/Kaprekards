@@ -35,7 +35,8 @@ def play_game(num_players, max_games):
         for player in players:
             print(f"{player}'s turn:")
             cards = [random.randint(0, 9) for _ in range(4)]
-            print(f"Cards dealt: {cards}")
+            if player == players[0]:
+                print(f"Cards dealt: {cards}")
 
             # arrange cards and compute the score
             largest_num, smallest_num = arrange_cards(cards)
@@ -48,21 +49,30 @@ def play_game(num_players, max_games):
 
             # iterate until the score reaches 6174
             num_iterations = 0
-            previous_difference = None
+            hand = cards.copy()
             while score != 6174:
-                hand = str(cards).ljust(16) if previous_difference is None else str(previous_difference).ljust(16)
                 descending = str(largest_num).ljust(16)
                 ascending = str(smallest_num).ljust(16)
                 difference = str(score).ljust(16)
-                print(f"{hand}{descending}{ascending}{difference}")
+
+                hand_str = str(hand).ljust(16)
+
+                print(f"{hand_str}{descending}{ascending}{difference}")
 
                 largest_num, smallest_num = arrange_cards(str(score).zfill(4))
                 score = largest_num - smallest_num
                 num_iterations += 1
-                previous_difference = score
+
+                hand = [score // 1000, (score // 100) % 10, (score // 10) % 10, score % 10]
 
             # print final result's column
-            print(f"{str(cards).ljust(16)}{str(largest_num).ljust(16)}{str(smallest_num).ljust(16)}{str(score).ljust(16)}")
+            descending = str(largest_num).ljust(16)
+            ascending = str(smallest_num).ljust(16)
+            difference = str(score).ljust(16)
+
+            hand_str = str(hand).ljust(16)
+
+            print(f"{hand_str}{descending}{ascending}{difference}")
             print()
 
             scores[player] += num_iterations
